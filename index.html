@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone - Premium Gym & Fitness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo">
+                    <h1>FitZone</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" data-link="home">Home</a></li>
+                    <li><a href="programs.html" data-link="programs">Programs</a></li>
+                    <li><a href="trainers.html" data-link="trainers">Trainers</a></li>
+                    <li><a href="membership.html" data-link="membership">Membership</a></li>
+                    <li><a href="nutrition.html" data-link="nutrition">Nutrition</a></li>
+                    <li><a href="bmi.html" data-link="bmi">BMI</a></li>
+                    <li><a href="communication.html" data-link="communication">Coaches</a></li>
+                    <li id="profileBtnNav" style="display: none;"><a href="profile.html" data-link="profile">Profile</a></li>
+                    <li id="loginBtnNav"><a href="#" onclick="openAuthModal('login')">Login</a></li>
+                    <li id="logoutBtnNav" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="icon-btn" id="themeToggle" aria-pressed="false" type="button" aria-label="Toggle dark mode"></button>
+                    <button class="nav-toggle" id="navToggle" aria-label="Open menu" type="button"><span></span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span>Personalized Plans</span>
+                    <span>Elite Coaches</span>
+                    <span>24/7 Access</span>
+                </div>
+                <h1>Transform Your Body, Transform Your Life</h1>
+                <p>Step into FitZone and unlock premium coaching, science-backed training, and a community built for results.</p>
+                <button class="btn-primary" onclick="openAuthModal('register')">Start Your Journey</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Member Reviews</h2>
+                <p>Real stories from members who transformed their strength, energy, and confidence.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p>“The coaching is next level. I dropped 8kg and feel stronger than ever.”</p>
+                    <div class="review-meta">
+                        <strong>Lina H.</strong>
+                        <span>HIIT + Nutrition</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p>“Love the programs and the vibe. The trainers keep me consistent.”</p>
+                    <div class="review-meta">
+                        <strong>Omar T.</strong>
+                        <span>Strength Training</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p>“Best gym experience I’ve had. Clean, professional, and motivating.”</p>
+                    <div class="review-meta">
+                        <strong>Sarah M.</strong>
+                        <span>Yoga & Recovery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+
+            <div id="loginForm" class="auth-form">
+                <h2>Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+            </div>
+
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Register</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerName">Full Name:</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerAge">Age:</label>
+                        <input type="number" id="registerAge" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitZone</h4>
+                    <p>Your ultimate fitness destination for a healthier lifestyle.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="trainers.html">Trainers</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@fitzone.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.07C22 6.49 17.52 2 11.94 2S1.87 6.49 1.87 12.07c0 5 3.66 9.15 8.44 9.93v-7.03H7.9v-2.9h2.41V9.8c0-2.4 1.43-3.73 3.62-3.73 1.05 0 2.15.19 2.15.19v2.36h-1.21c-1.19 0-1.56.74-1.56 1.5v1.8h2.66l-.43 2.9h-2.23V22c4.78-.78 8.44-4.93 8.44-9.93z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm5.25-3.25a1.25 1.25 0 1 0 1.25 1.25 1.25 1.25 0 0 0-1.25-1.25z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.15 7.2c.01.17.01.34.01.52 0 5.32-4.05 11.46-11.46 11.46-2.28 0-4.4-.67-6.18-1.82.32.04.63.05.96.05 1.89 0 3.63-.64 5.01-1.73-1.77-.04-3.26-1.2-3.77-2.8.25.04.5.06.77.06.36 0 .72-.05 1.06-.14-1.85-.37-3.24-2-3.24-3.95v-.05c.54.3 1.17.49 1.84.51-1.08-.72-1.79-1.95-1.79-3.34 0-.74.2-1.43.55-2.03 2 2.45 4.99 4.06 8.36 4.24-.06-.3-.1-.6-.1-.92 0-2.22 1.8-4.02 4.02-4.02 1.16 0 2.22.49 2.96 1.27.92-.18 1.8-.52 2.58-.98-.3.94-.94 1.72-1.77 2.22.82-.1 1.6-.31 2.33-.62-.55.82-1.23 1.54-2.02 2.12z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FitZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
