@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Payments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="payments">
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo">
+                    <h1>FitZone</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" data-link="home">Home</a></li>
+                    <li><a href="programs.html" data-link="programs">Programs</a></li>
+                    <li><a href="trainers.html" data-link="trainers">Trainers</a></li>
+                    <li><a href="membership.html" data-link="membership">Membership</a></li>
+                    <li><a href="nutrition.html" data-link="nutrition">Nutrition</a></li>
+                    <li><a href="bmi.html" data-link="bmi">BMI</a></li>
+                    <li><a href="communication.html" data-link="communication">Coaches</a></li>
+                    <li><a href="payments.html" data-link="payments">Payments</a></li>
+                    <li id="profileBtnNav" style="display: none;"><a href="profile.html" data-link="profile">Profile</a></li>
+                    <li id="loginBtnNav"><a href="#" onclick="openAuthModal('login')">Login</a></li>
+                    <li id="logoutBtnNav" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="icon-btn" id="themeToggle" aria-pressed="false" type="button" aria-label="Toggle dark mode"></button>
+                    <button class="nav-toggle" id="navToggle" aria-label="Open menu" type="button"><span></span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero" style="--hero-image: none;">
+        <div class="container">
+            <h1>Payment Methods</h1>
+            <p>Secure, flexible, and convenient payment options for your membership and services.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Select Your Payment Method</h2>
+                <p>Choose the payment method that works best for you. All transactions are secure and encrypted.</p>
+            </div>
+            
+            <div class="payment-methods-grid">
+                <div class="payment-method-card" onclick="selectPaymentMethod('credit-card')">
+                    <div class="payment-method-icon">💳</div>
+                    <h3>Credit/Debit Card</h3>
+                    <p>Visa, Mastercard, American Express</p>
+                </div>
+
+                <div class="payment-method-card featured" onclick="selectPaymentMethod('paypal')">
+                    <div class="featured-badge-small">RECOMMENDED</div>
+                    <div class="payment-method-icon">₽</div>
+                    <h3>PayPal</h3>
+                    <p>Fast & secure payment</p>
+                </div>
+
+                <div class="payment-method-card" onclick="selectPaymentMethod('bank-transfer')">
+                    <div class="payment-method-icon">🏦</div>
+                    <h3>Bank Transfer</h3>
+                    <p>Direct bank account payment</p>
+                </div>
+
+                <div class="payment-method-card" onclick="selectPaymentMethod('digital-wallet')">
+                    <div class="payment-method-icon">📱</div>
+                    <h3>Digital Wallet</h3>
+                    <p>Apple Pay, Google Pay, Others</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="payment-form-wrapper">
+                <div class="payment-form-container">
+                    <h2>Payment Details</h2>
+                    
+                    <form id="paymentForm" onsubmit="handlePayment(event)">
+                        <!-- Billing Information -->
+                        <div class="form-section">
+                            <h3>Billing Information</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name *</label>
+                                    <input type="text" id="fullName" required placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" required placeholder="john@example.com">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" required placeholder="+1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country *</label>
+                                    <select id="country" required>
+                                        <option value="">Select Country</option>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="FR">France</option>
+                                        <option value="IN">India</option>
+                                        <option value="BR">Brazil</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="address">Street Address *</label>
+                                    <input type="text" id="address" required placeholder="123 Main Street">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    <input type="text" id="city" required placeholder="New York">
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State/Province *</label>
+                                    <input type="text" id="state" required placeholder="NY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="zipcode">ZIP/Postal Code *</label>
+                                    <input type="text" id="zipcode" required placeholder="10001">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method Card Details (shown dynamically) -->
+                        <div class="form-section" id="creditCardSection">
+                            <h3>Card Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="cardholderName">Cardholder Name *</label>
+                                <input type="text" id="cardholderName" placeholder="Name on card">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number *</label>
+                                <div class="card-input-wrapper">
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                                    <span class="card-type-icon"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiryDate">Expiry Date *</label>
+                                    <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV *</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PayPal Section (hidden by default) -->
+                        <div class="form-section" id="paypalSection" style="display: none;">
+                            <h3>PayPal Details</h3>
+                            <div class="form-group">
+                                <label for="paypalEmail">PayPal Email *</label>
+                                <input type="email" id="paypalEmail" placeholder="your-paypal@example.com">
+                            </div>
+                            <p class="info-text">You will be redirected to PayPal to complete the payment securely.</p>
+                        </div>
+
+                        <!-- Bank Transfer Section (hidden by default) -->
+                        <div class="form-section" id="bankTransferSection" style="display: none;">
+                            <h3>Bank Transfer Details</h3>
+                            <div class="form-group">
+                                <label for="accountHolder">Account Holder Name *</label>
+                                <input type="text" id="accountHolder" placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="accountNumber">Account Number *</label>
+                                <input type="text" id="accountNumber" placeholder="Your account number">
+                            </div>
+                            <div class="form-group">
+                                <label for="routingNumber">Routing Number *</label>
+                                <input type="text" id="routingNumber" placeholder="Your routing number">
+                            </div>
+                            <p class="info-text">Please note that bank transfers may take 3-5 business days to process.</p>
+                        </div>
+
+                        <!-- Digital Wallet Section (hidden by default) -->
+                        <div class="form-section" id="digitalWalletSection" style="display: none;">
+                            <h3>Digital Wallet</h3>
+                            <div class="wallet-options">
+                                <button type="button" class="wallet-btn">
+                                    <span>🍎</span> Apple Pay
+                                </button>
+                                <button type="button" class="wallet-btn">
+                                    <span>🔵</span> Google Pay
+                                </button>
+                            </div>
+                            <p class="info-text">Select your preferred digital wallet provider for quick payment.</p>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="form-section">
+                            <h3>Order Summary</h3>
+                            
+                            <div class="order-item">
+                                <div class="item-details">
+                                    <span class="item-name" id="membershipName">Premium Membership</span>
+                                    <span class="item-duration" id="membershipDuration">Monthly</span>
+                                </div>
+                                <span class="item-price" id="membershipPrice">$59.00</span>
+                            </div>
+
+                            <div class="order-item">
+                                <div class="item-details">
+                                    <span class="item-name">Taxes & Fees</span>
+                                </div>
+                                <span class="item-price" id="taxAmount">$5.90</span>
+                            </div>
+
+                            <div class="order-divider"></div>
+
+                            <div class="order-total">
+                                <span>Total Amount</span>
+                                <span class="total-price" id="totalAmount">$64.90</span>
+                            </div>
+                        </div>
+
+                        <!-- Agreement Checkbox -->
+                        <div class="form-section">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms">I agree to the <a href="#" onclick="openPolicyModal('terms')">Terms of Service</a> and <a href="#" onclick="openPolicyModal('privacy')">Privacy Policy</a> *</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="recurring">
+                                <label for="recurring">Enable automatic recurring payments for my membership</label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-primary payment-submit-btn">
+                            Complete Payment
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Payment Info Sidebar -->
+                <div class="payment-info-sidebar">
+                    <h3>Why Choose FitZone?</h3>
+                    <ul class="info-list">
+                        <li>🔒 Secure & encrypted payments</li>
+                        <li>⚡ Instant payment confirmation</li>
+                        <li>💳 Multiple payment methods</li>
+                        <li>📱 Mobile-friendly checkout</li>
+                        <li>🔄 Flexible billing options</li>
+                        <li>📞 24/7 customer support</li>
+                    </ul>
+
+                    <h3 style="margin-top: 2rem;">Payment Security</h3>
+                    <p class="security-info">
+                        All payments are processed through industry-standard SSL encryption and PCI DSS compliance. Your financial information is never stored on our servers.
+                    </p>
+
+                    <div class="security-badges">
+                        <div class="badge badge-ssl">
+                            <span class="badge-icon">🔒</span>
+                            <span>SSL Secure</span>
+                        </div>
+                        <div class="badge badge-pci">
+                            <span class="badge-icon">💳</span>
+                            <span>PCI Compliant</span>
+                        </div>
+                        <div class="badge badge-verified">
+                            <span class="badge-icon">✓</span>
+                            <span>Verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="paymentSuccessModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close" onclick="closePaymentModal()">&times;</span>
+            <div style="font-size: 3rem; margin: 1rem 0;">✓</div>
+            <h2>Payment Successful!</h2>
+            <p id="successMessage">Your payment has been processed successfully.</p>
+            <div class="modal-details" id="modalDetails" style="text-align: left; background: var(--surface-2); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                <!-- Details will be inserted here -->
+            </div>
+            <button class="btn-primary" onclick="closePaymentModal()">Close</button>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            <div id="loginForm" class="auth-form">
+                <h2>Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+            </div>
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Register</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerName">Full Name:</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerAge">Age:</label>
+                        <input type="number" id="registerAge" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+            <span class="close" onclick="closePolicyModal()">&times;</span>
+            <h2>Terms of Service</h2>
+            <div class="policy-content">
+                <h3>1. Membership Agreement</h3>
+                <p>By purchasing a FitZone membership, you agree to comply with all terms and conditions outlined in this agreement. Your membership is non-transferable and intended solely for personal use.</p>
+                
+                <h3>2. Payment Terms</h3>
+                <p>All memberships are billed on a monthly basis unless otherwise specified. You authorize FitZone to charge your selected payment method for the amount shown on your order.</p>
+                
+                <h3>3. Cancellation Policy</h3>
+                <p>Memberships can be cancelled anytime by contacting our support team. Refunds are issued according to our refund policy. Cancellations must be requested before your next billing cycle.</p>
+                
+                <h3>4. Gym Policies</h3>
+                <p>Members agree to follow all gym rules and regulations, including proper equipment usage, appropriate attire, and respectful behavior toward staff and other members.</p>
+                
+                <h3>5. Liability Waiver</h3>
+                <p>FitZone is not responsible for any injuries, damages, or losses incurred while using gym facilities. By signing up, you assume all risks associated with physical activity.</p>
+                
+                <h3>6. Suspension and Termination</h3>
+                <p>FitZone reserves the right to suspend or terminate memberships for violation of policies or non-payment of fees.</p>
+                
+                <h3>7. Changes to Terms</h3>
+                <p>FitZone may update these terms at any time. Continued use of services indicates acceptance of updated terms.</p>
+            </div>
+            <button class="btn-primary" onclick="closePolicyModal()" style="width: 100%; margin-top: 1rem;">Close</button>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+            <span class="close" onclick="closePolicyModal()">&times;</span>
+            <h2>Privacy Policy</h2>
+            <div class="policy-content">
+                <h3>1. Information We Collect</h3>
+                <p>We collect personal information such as your name, email address, phone number, and billing information to process your membership and provide our services.</p>
+                
+                <h3>2. How We Use Your Information</h3>
+                <p>Your information is used to process payments, send membership updates, improve our services, and communicate important information about your account.</p>
+                
+                <h3>3. Data Security</h3>
+                <p>We implement industry-standard security measures to protect your personal and financial information. All data is encrypted and stored securely.</p>
+                
+                <h3>4. Third-Party Sharing</h3>
+                <p>We do not sell or share your personal information with third parties without your consent, except as required by law or to process your payments through authorized payment processors.</p>
+                
+                <h3>5. Cookies and Tracking</h3>
+                <p>Our website may use cookies to enhance your experience. These cookies help us understand user behavior and improve our services.</p>
+                
+                <h3>6. Your Rights</h3>
+                <p>You have the right to access, modify, or delete your personal information. Please contact us to exercise these rights.</p>
+                
+                <h3>7. Contact Us</h3>
+                <p>If you have any questions about our privacy practices, please contact our support team at support@fitzone.com</p>
+            </div>
+            <button class="btn-primary" onclick="closePolicyModal()" style="width: 100%; margin-top: 1rem;">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitZone</h4>
+                    <p>Your ultimate fitness destination for a healthier lifestyle.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="trainers.html">Trainers</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="nutrition.html">Nutrition</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FitZone. All rights reserved. | Designed with ❤️ for your fitness journey</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        let selectedPaymentMethod = 'credit-card';
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            formatCardInput();
+            formatExpiryInput();
+            formatCVVInput();
+            loadMembershipData();
+        });
+
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // Update active state
+            document.querySelectorAll('.payment-method-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.target.closest('.payment-method-card').classList.add('active');
+
+            // Show/hide relevant form sections
+            document.getElementById('creditCardSection').style.display = 'none';
+            document.getElementById('paypalSection').style.display = 'none';
+            document.getElementById('bankTransferSection').style.display = 'none';
+            document.getElementById('digitalWalletSection').style.display = 'none';
+
+            switch(method) {
+                case 'credit-card':
+                    document.getElementById('creditCardSection').style.display = 'block';
+                    break;
+                case 'paypal':
+                    document.getElementById('paypalSection').style.display = 'block';
+                    break;
+                case 'bank-transfer':
+                    document.getElementById('bankTransferSection').style.display = 'block';
+                    break;
+                case 'digital-wallet':
+                    document.getElementById('digitalWalletSection').style.display = 'block';
+                    break;
+            }
+        }
+
+        function formatCardInput() {
+            const input = document.getElementById('cardNumber');
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                let formattedValue = '';
+                for (let i = 0; i < value.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formattedValue += ' ';
+                    }
+                    formattedValue += value[i];
+                }
+                e.target.value = formattedValue;
+            });
+        }
+
+        function formatExpiryInput() {
+            const input = document.getElementById('expiryDate');
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                }
+                e.target.value = value;
+            });
+        }
+
+        function formatCVVInput() {
+            const input = document.getElementById('cvv');
+            input.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
+            });
+        }
+
+        function handlePayment(event) {
+            event.preventDefault();
+
+            const currentUser = getCurrentUser();
+            if (!currentUser) {
+                alert('Please login first to complete the payment.');
+                openAuthModal('login');
+                return;
+            }
+
+            // Validate required fields
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const zipcode = document.getElementById('zipcode').value.trim();
+            const terms = document.getElementById('terms').checked;
+
+            if (!fullName || !email || !phone || !address || !city || !state || !zipcode) {
+                alert('Please fill in all required billing information fields.');
+                return;
+            }
+
+            if (!terms) {
+                alert('Please agree to the Terms of Service and Privacy Policy.');
+                return;
+            }
+
+            // Validate payment method specific fields
+            if (selectedPaymentMethod === 'credit-card') {
+                const cardholderName = document.getElementById('cardholderName').value.trim();
+                const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+
+                if (!cardholderName || !cardNumber || !expiryDate || !cvv) {
+                    alert('Please fill in all card information fields.');
+                    return;
+                }
+
+                if (cardNumber.length !== 16) {
+                    alert('Please enter a valid 16-digit card number.');
+                    return;
+                }
+
+                if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+                    alert('Please enter expiry date in MM/YY format.');
+                    return;
+                }
+
+                if (!/^\d{3,4}$/.test(cvv)) {
+                    alert('Please enter a valid CVV.');
+                    return;
+                }
+            } else if (selectedPaymentMethod === 'paypal') {
+                const paypalEmail = document.getElementById('paypalEmail').value.trim();
+                if (!paypalEmail) {
+                    alert('Please enter your PayPal email address.');
+                    return;
+                }
+            } else if (selectedPaymentMethod === 'bank-transfer') {
+                const accountHolder = document.getElementById('accountHolder').value.trim();
+                const accountNumber = document.getElementById('accountNumber').value.trim();
+                const routingNumber = document.getElementById('routingNumber').value.trim();
+
+                if (!accountHolder || !accountNumber || !routingNumber) {
+                    alert('Please fill in all bank transfer information.');
+                    return;
+                }
+            }
+
+            // Create payment record
+            const paymentRecord = {
+                id: Date.now(),
+                userId: currentUser.id,
+                paymentMethod: selectedPaymentMethod,
+                amount: document.getElementById('totalAmount').innerText,
+                billingInfo: {
+                    fullName: fullName,
+                    email: email,
+                    phone: phone,
+                    address: address,
+                    city: city,
+                    state: state,
+                    zipcode: zipcode
+                },
+                recurringEnabled: document.getElementById('recurring').checked,
+                paymentDate: new Date().toLocaleDateString(),
+                status: 'completed'
+            };
+
+            // Save to localStorage
+            let payments = JSON.parse(localStorage.getItem('payments')) || [];
+            payments.push(paymentRecord);
+            localStorage.setItem('payments', JSON.stringify(payments));
+
+            // Update user membership
+            currentUser.lastPaymentDate = new Date().toLocaleDateString();
+            currentUser.membership = document.getElementById('membershipName').innerText;
+            saveUserData(currentUser);
+            setCurrentUser(currentUser);
+
+            // Show success modal
+            showPaymentSuccess(paymentRecord);
+        }
+
+        function showPaymentSuccess(paymentRecord) {
+            const modal = document.getElementById('paymentSuccessModal');
+            const modalDetails = document.getElementById('modalDetails');
+
+            let methodDisplay = selectedPaymentMethod.replace('-', ' ').toUpperCase();
+            
+            modalDetails.innerHTML = `
+                <p><strong>Payment Method:</strong> ${methodDisplay}</p>
+                <p><strong>Amount:</strong> ${paymentRecord.amount}</p>
+                <p><strong>Transaction ID:</strong> #${paymentRecord.id}</p>
+                <p><strong>Date:</strong> ${paymentRecord.paymentDate}</p>
+                <p><strong>Name:</strong> ${paymentRecord.billingInfo.fullName}</p>
+                <p><strong>Email:</strong> ${paymentRecord.billingInfo.email}</p>
+            `;
+
+            modal.classList.add('show');
+        }
+
+        function closePaymentModal() {
+            const modal = document.getElementById('paymentSuccessModal');
+            modal.classList.remove('show');
+            document.getElementById('paymentForm').reset();
+        }
+
+        // Load membership data from sessionStorage
+        function loadMembershipData() {
+            const selectedMembership = sessionStorage.getItem('selectedMembership');
+            if (selectedMembership) {
+                const membership = JSON.parse(selectedMembership);
+                document.getElementById('membershipName').innerText = membership.name + ' Membership';
+                document.getElementById('membershipDuration').innerText = membership.duration;
+                document.getElementById('membershipPrice').innerText = '$' + membership.price.toFixed(2);
+                
+                // Calculate tax (10% for example)
+                const tax = membership.price * 0.1;
+                document.getElementById('taxAmount').innerText = '$' + tax.toFixed(2);
+                
+                // Update total
+                const total = membership.price + tax;
+                document.getElementById('totalAmount').innerText = '$' + total.toFixed(2);
+            }
+        }
+
+        // Open policy modal
+        function openPolicyModal(type) {
+            if (type === 'terms') {
+                document.getElementById('termsModal').classList.add('show');
+            } else if (type === 'privacy') {
+                document.getElementById('privacyModal').classList.add('show');
+            }
+        }
+
+        // Close policy modal
+        function closePolicyModal() {
+            document.getElementById('termsModal').classList.remove('show');
+            document.getElementById('privacyModal').classList.remove('show');
+        }
+
+        // Initialize with credit card selected
+        window.addEventListener('load', function() {
+            selectPaymentMethod('credit-card');
+        });
+    </script>
+</body>
+</html>

@@ -237,11 +237,33 @@ function buyMembership(planName, price) {
         return;
     }
 
-    currentUser.membership = planName;
-    saveUserData(currentUser);
-    setCurrentUser(currentUser);
+    // Store membership data in sessionStorage
+    sessionStorage.setItem('selectedMembership', JSON.stringify({
+        name: planName,
+        price: price,
+        duration: 'Monthly'
+    }));
 
-    alert(`Congratulations! You've successfully purchased the ${planName} membership for $${price}/month. Welcome to FitZone Premium!`);
+    // Redirect to payments page
+    window.location.href = 'payments.html';
+}
+
+// ==================== TRAINERS ====================
+
+function messageCoach(coachId, coachName) {
+    const currentUser = getCurrentUser();
+
+    if (!currentUser) {
+        alert('Please login first to message a coach');
+        openAuthModal('login');
+        return;
+    }
+
+    // Store selected coach data
+    sessionStorage.setItem('selectedCoach', coachId);
+
+    // Redirect to communication page
+    window.location.href = 'communication.html';
 }
 
 // ==================== THEME ====================
@@ -665,7 +687,19 @@ function setupCommChat() {
         }
     });
 
-    setCoach(coachButtons[0]);
+    // Check if a coach was selected from the trainers page
+    const selectedCoachId = sessionStorage.getItem('selectedCoach');
+    if (selectedCoachId) {
+        const selectedButton = document.querySelector(`.coach-item[data-coach="${selectedCoachId}"]`);
+        if (selectedButton) {
+            setCoach(selectedButton);
+            sessionStorage.removeItem('selectedCoach');
+        } else {
+            setCoach(coachButtons[0]);
+        }
+    } else {
+        setCoach(coachButtons[0]);
+    }
 }
 
 // ==================== PROGRAM MODAL ====================
