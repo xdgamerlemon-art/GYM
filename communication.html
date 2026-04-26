@@ -154,7 +154,29 @@
                     <button type="submit" class="btn-primary">Login</button>
                 </form>
                 <p>Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+                <p style="margin-top: 12px; font-size: 0.9rem;"><a href="#" onclick="switchToReset()" style="color: var(--primary);">Forgot password?</a></p>
             </div>
+
+            <div id="resetForm" class="auth-form" style="display: none;">
+                <h2>Reset Password</h2>
+                <form onsubmit="handlePasswordReset(event)">
+                    <div class="form-group">
+                        <label for="resetEmail">Email:</label>
+                        <input type="email" id="resetEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resetNewPassword">New Password:</label>
+                        <input type="password" id="resetNewPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resetConfirmPassword">Confirm Password:</label>
+                        <input type="password" id="resetConfirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Reset Password</button>
+                </form>
+                <p>Remember your password? <a href="#" onclick="switchToLogin()">Login here</a></p>
+            </div>
+
             <div id="registerForm" class="auth-form" style="display: none;">
                 <h2>Register</h2>
                 <form onsubmit="handleRegister(event)">

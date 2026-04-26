@@ -41,13 +41,16 @@ function openAuthModal(type) {
     const modal = document.getElementById('authModal');
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
+    const resetForm = document.getElementById('resetForm');
 
     if (type === 'login') {
         loginForm.style.display = 'block';
         registerForm.style.display = 'none';
+        resetForm.style.display = 'none';
     } else {
         loginForm.style.display = 'none';
         registerForm.style.display = 'block';
+        resetForm.style.display = 'none';
     }
 
     modal.classList.add('show');
@@ -63,16 +66,70 @@ function closeAuthModal() {
     document.getElementById('registerEmail').value = '';
     document.getElementById('registerPassword').value = '';
     document.getElementById('registerAge').value = '';
-}
-
-function switchToRegister() {
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'block';
+    document.getElementById('resetEmail').value = '';
+    document.getElementById('resetNewPassword').value = '';
+    document.getElementById('resetConfirmPassword').value = '';
 }
 
 function switchToLogin() {
     document.getElementById('loginForm').style.display = 'block';
     document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('resetForm').style.display = 'none';
+}
+
+function switchToReset() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('resetForm').style.display = 'block';
+}
+
+function handlePasswordReset(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('resetEmail').value.trim();
+    const newPassword = document.getElementById('resetNewPassword').value;
+    const confirmPassword = document.getElementById('resetConfirmPassword').value;
+
+    if (!email || !newPassword || !confirmPassword) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    if (newPassword !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+    }
+
+    if (newPassword.length < 6) {
+        alert('Password must be at least 6 characters');
+        return;
+    }
+
+    const users = getAllUsers();
+    const userIndex = users.findIndex(u => u.email === email);
+
+    if (userIndex === -1) {
+        alert('Email not found. Please register first.');
+        return;
+    }
+
+    // Update password
+    users[userIndex].password = newPassword;
+    localStorage.setItem('gymUsers', JSON.stringify(users));
+
+    alert('Password reset successful! You can now login with your new password.');
+    
+    // Clear form and go to login
+    document.getElementById('resetEmail').value = '';
+    document.getElementById('resetNewPassword').value = '';
+    document.getElementById('resetConfirmPassword').value = '';
+    switchToLogin();
+}
+
+function switchToRegister() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'block';
+    document.getElementById('resetForm').style.display = 'none';
 }
 
 function handleRegister(event) {
@@ -499,6 +556,42 @@ window.onclick = function(event) {
     }
 };
 
+// ==================== COUNTRY PHONE CODES ====================
+
+const countryPhoneCodes = {
+    'US': '+1',
+    'CA': '+1',
+    'UK': '+44',
+    'AU': '+61',
+    'DE': '+49',
+    'FR': '+33',
+    'IN': '+91',
+    'BR': '+55',
+    'JO': '+962'
+};
+
+function setupCountryPhoneCode() {
+    const countrySelect = document.getElementById('country');
+    const phoneInput = document.getElementById('phone');
+
+    if (!countrySelect || !phoneInput) {
+        return;
+    }
+
+    countrySelect.addEventListener('change', function() {
+        const selectedCountry = this.value;
+        const phoneCode = countryPhoneCodes[selectedCountry];
+
+        if (phoneCode) {
+            phoneInput.placeholder = `${phoneCode} (xxx) xxx-xxxx`;
+            phoneInput.value = phoneCode + ' ';
+        } else {
+            phoneInput.placeholder = '+1 (555) 123-4567';
+            phoneInput.value = '';
+        }
+    });
+}
+
 // ==================== INITIALIZATION ====================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -520,6 +613,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupReveals();
     setupCommChat();
     setupProgramModal();
+    setupCountryPhoneCode();
 });
 
 // ==================== REVEAL ANIMATIONS ====================
@@ -545,8 +639,6 @@ function setupReveals() {
 
     elements.forEach((el, index) => {
         el.classList.add('reveal');
-        const delay = Math.min(index, 8) * 60;
-        el.style.transitionDelay = `${delay}ms`;
     });
 
     if (!('IntersectionObserver' in window)) {
