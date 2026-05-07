@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitZone Membership</title>
+    <title>FitZone BMI Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
-<body data-page="membership">
+<body data-page="bmi">
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
@@ -39,55 +39,35 @@
 
     <section class="page-hero" style="--hero-image: none;">
         <div class="container">
-            <h1>Membership Plans</h1>
-            <p>Choose the plan that matches your lifestyle, schedule, and goals. Upgrade anytime.</p>
+            <h1>BMI Calculator</h1>
+            <p>Check your body mass index and track your progress over time.</p>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <div class="membership-grid">
-                <div class="membership-card">
-                    <h3>Basic</h3>
-                    <p class="price">$29/month</p>
-                    <ul>
-                        <li>Access to all gym equipment</li>
-                        <li>Open during business hours</li>
-                        <li>Free locker room access</li>
-                        <li>Personal trainer sessions</li>
-                        <li>Group classes</li>
-                        <li>Swimming pool access</li>
-                    </ul>
-                    <button class="btn-secondary" onclick="buyMembership('Basic', 29)">Choose Plan</button>
+            <div class="bmi-wrapper">
+                <div class="bmi-calculator">
+                    <h3>Calculate Your BMI</h3>
+                    <div class="form-group">
+                        <label for="bmiHeight">Height (in cm):</label>
+                        <input type="number" id="bmiHeight" placeholder="Enter height" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="bmiWeight">Weight (in kg):</label>
+                        <input type="number" id="bmiWeight" placeholder="Enter weight" min="1">
+                    </div>
+                    <button class="btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+                    <div id="bmiResult" style="margin-top: 20px;"></div>
                 </div>
-
-                <div class="membership-card featured">
-                    <div class="featured-badge">POPULAR</div>
-                    <h3>Premium</h3>
-                    <p class="price">$59/month</p>
+                <div class="card">
+                    <h3>How to Use Your BMI</h3>
+                    <p>BMI is a simple indicator for understanding body composition. Use it alongside measurements and coaching guidance for a full picture.</p>
                     <ul>
-                        <li>Access to all gym equipment</li>
-                        <li>24/7 gym access</li>
-                        <li>4 group classes per month</li>
-                        <li>2 personal trainer sessions</li>
-                        <li>Swimming pool access</li>
-                        <li>Nutrition consultation</li>
+                        <li>Check monthly to monitor trends.</li>
+                        <li>Pair with strength training data.</li>
+                        <li>Consult a coach for personalized insights.</li>
                     </ul>
-                    <button class="btn-primary" onclick="buyMembership('Premium', 59)">Choose Plan</button>
-                </div>
-
-                <div class="membership-card">
-                    <h3>Elite</h3>
-                    <p class="price">$99/month</p>
-                    <ul>
-                        <li>Access to all gym equipment</li>
-                        <li>24/7 gym access</li>
-                        <li>Unlimited group classes</li>
-                        <li>8 personal trainer sessions</li>
-                        <li>Swimming pool + sauna</li>
-                        <li>Full nutrition & wellness program</li>
-                    </ul>
-                    <button class="btn-secondary" onclick="buyMembership('Elite', 99)">Choose Plan</button>
                 </div>
             </div>
         </div>
@@ -186,7 +166,7 @@
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.07C22 6.49 17.52 2 11.94 2S1.87 6.49 1.87 12.07c0 5 3.66 9.15 8.44 9.93v-7.03H7.9v-2.9h2.41V9.8c0-2.4 1.43-3.73 3.62-3.73 1.05 0 2.15.19 2.15.19v2.36h-1.21c-1.19 0-1.56.74-1.56 1.5v1.8h2.66l-.43 2.9h-2.23V22c4.78-.78 8.44-4.93 8.44-9.93z"/></svg>
                         </a>
                         <a href="#" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm5.25-3.25a1.25 1.25 0 1 0 1.25 1.25 1.25 1.25 0 0 0-1.25-1.25z"/></svg>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7c0-2.76 2.24-5 5-5h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm5.25-3.25a1.25 1.25 0 1 0 1.25 1.25 1.25 1.25 0 0 0-1.25-1.25z"/></svg>
                         </a>
                         <a href="#" aria-label="Twitter">
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.15 7.2c.01.17.01.34.01.52 0 5.32-4.05 11.46-11.46 11.46-2.28 0-4.4-.67-6.18-1.82.32.04.63.05.96.05 1.89 0 3.63-.64 5.01-1.73-1.77-.04-3.26-1.2-3.77-2.8.25.04.5.06.77.06.36 0 .72-.05 1.06-.14-1.85-.37-3.24-2-3.24-3.95v-.05c.54.3 1.17.49 1.84.51-1.08-.72-1.79-1.95-1.79-3.34 0-.74.2-1.43.55-2.03 2 2.45 4.99 4.06 8.36 4.24-.06-.3-.1-.6-.1-.92 0-2.22 1.8-4.02 4.02-4.02 1.16 0 2.22.49 2.96 1.27.92-.18 1.8-.52 2.58-.98-.3.94-.94 1.72-1.77 2.22.82-.1 1.6-.31 2.33-.62-.55.82-1.23 1.54-2.02 2.12z"/></svg>
@@ -200,6 +180,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
+

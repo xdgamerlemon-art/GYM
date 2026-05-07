@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitZone BMI Calculator</title>
+    <title>FitZone Profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
-<body data-page="bmi">
+<body data-page="profile">
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
@@ -39,35 +39,51 @@
 
     <section class="page-hero" style="--hero-image: none;">
         <div class="container">
-            <h1>BMI Calculator</h1>
-            <p>Check your body mass index and track your progress over time.</p>
+            <h1>Your Profile</h1>
+            <p>Manage your FitZone account and track your progress.</p>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <div class="bmi-wrapper">
-                <div class="bmi-calculator">
-                    <h3>Calculate Your BMI</h3>
-                    <div class="form-group">
-                        <label for="bmiHeight">Height (in cm):</label>
-                        <input type="number" id="bmiHeight" placeholder="Enter height" min="1">
+            <div class="profile-layout">
+                <div class="profile-sidebar">
+                    <div class="profile-avatar">FZ</div>
+                    <h2 id="profileName">Guest</h2>
+                    <p id="profileEmail">Login to see your profile.</p>
+                    <div class="profile-tags">
+                        <span class="badge">Member</span>
+                        <span class="badge">Goal Focused</span>
                     </div>
-                    <div class="form-group">
-                        <label for="bmiWeight">Weight (in kg):</label>
-                        <input type="number" id="bmiWeight" placeholder="Enter weight" min="1">
+                    <div class="profile-actions">
+                        <a class="btn-primary" href="membership.html">Upgrade Plan</a>
+                        <a class="btn-ghost" href="bmi.html">Update BMI</a>
                     </div>
-                    <button class="btn-primary" onclick="calculateBMI()">Calculate BMI</button>
-                    <div id="bmiResult" style="margin-top: 20px;"></div>
                 </div>
-                <div class="card">
-                    <h3>How to Use Your BMI</h3>
-                    <p>BMI is a simple indicator for understanding body composition. Use it alongside measurements and coaching guidance for a full picture.</p>
-                    <ul>
-                        <li>Check monthly to monitor trends.</li>
-                        <li>Pair with strength training data.</li>
-                        <li>Consult a coach for personalized insights.</li>
-                    </ul>
+                <div class="profile-main">
+                    <div class="profile-grid">
+                        <div class="profile-card">
+                            <h3>Account Details</h3>
+                            <p><strong>Name:</strong> <span id="profileNameDetail">Guest</span></p>
+                            <p><strong>Email:</strong> <span id="profileEmailDetail">Login to see your profile.</span></p>
+                            <p><strong>Age:</strong> <span id="profileAge">-</span></p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Membership</h3>
+                            <p><strong>Current Plan:</strong> <span id="profileMembership">None</span></p>
+                            <p>Upgrade anytime from the Membership page.</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Latest BMI</h3>
+                            <p><strong>Last Result:</strong> <span id="profileBmi">Not calculated</span></p>
+                            <p>Use the BMI calculator to track progress.</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Next Steps</h3>
+                            <p>Set a weekly goal and connect with a coach for guidance.</p>
+                            <a class="btn-secondary" href="trainers.html">Meet Trainers</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,7 +196,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
 

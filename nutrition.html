@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitZone Profile</title>
+    <title>FitZone Nutrition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
-<body data-page="profile">
+<body data-page="nutrition">
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
@@ -39,51 +39,53 @@
 
     <section class="page-hero" style="--hero-image: none;">
         <div class="container">
-            <h1>Your Profile</h1>
-            <p>Manage your FitZone account and track your progress.</p>
+            <h1>Nutrition & Fuel</h1>
+            <p>Balanced nutrition keeps your performance high. Use these guides to build meals that support your training.</p>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <div class="profile-layout">
-                <div class="profile-sidebar">
-                    <div class="profile-avatar">FZ</div>
-                    <h2 id="profileName">Guest</h2>
-                    <p id="profileEmail">Login to see your profile.</p>
-                    <div class="profile-tags">
-                        <span class="badge">Member</span>
-                        <span class="badge">Goal Focused</span>
-                    </div>
-                    <div class="profile-actions">
-                        <a class="btn-primary" href="membership.html">Upgrade Plan</a>
-                        <a class="btn-ghost" href="bmi.html">Update BMI</a>
-                    </div>
+            <div class="section-title">
+                <h2>Macro Essentials</h2>
+                <p>Mix proteins, carbs, and fats with hydration and micronutrients for a complete plan.</p>
+            </div>
+            <div class="nutrition-grid">
+                <div class="nutrition-card fancy-shape">
+                    <img src="images/protein.jpg" alt="Protein">
+                    <h3>Protein Power</h3>
+                    <p>Lean meats, legumes, and dairy keep your muscles recovering and growing.</p>
+                    <p class="nutrition-meta">Amount: 25-35g per meal · Timing: Post-workout + dinner</p>
                 </div>
-                <div class="profile-main">
-                    <div class="profile-grid">
-                        <div class="profile-card">
-                            <h3>Account Details</h3>
-                            <p><strong>Name:</strong> <span id="profileNameDetail">Guest</span></p>
-                            <p><strong>Email:</strong> <span id="profileEmailDetail">Login to see your profile.</span></p>
-                            <p><strong>Age:</strong> <span id="profileAge">-</span></p>
-                        </div>
-                        <div class="profile-card">
-                            <h3>Membership</h3>
-                            <p><strong>Current Plan:</strong> <span id="profileMembership">None</span></p>
-                            <p>Upgrade anytime from the Membership page.</p>
-                        </div>
-                        <div class="profile-card">
-                            <h3>Latest BMI</h3>
-                            <p><strong>Last Result:</strong> <span id="profileBmi">Not calculated</span></p>
-                            <p>Use the BMI calculator to track progress.</p>
-                        </div>
-                        <div class="profile-card">
-                            <h3>Next Steps</h3>
-                            <p>Set a weekly goal and connect with a coach for guidance.</p>
-                            <a class="btn-secondary" href="trainers.html">Meet Trainers</a>
-                        </div>
-                    </div>
+                <div class="nutrition-card fancy-shape">
+                    <img src="images/carbs.jpg" alt="Carbohydrates">
+                    <h3>Smart Carbs</h3>
+                    <p>Fuel your workouts with whole grains, fruits, and complex carbs.</p>
+                    <p class="nutrition-meta">Amount: 40-60g per meal · Timing: Pre-workout + lunch</p>
+                </div>
+                <div class="nutrition-card fancy-shape">
+                    <img src="images/fats.jpg" alt="Healthy fats">
+                    <h3>Healthy Fats</h3>
+                    <p>Support hormones and recovery with nuts, seeds, and avocado.</p>
+                    <p class="nutrition-meta">Amount: 10-20g per meal · Timing: Breakfast + dinner</p>
+                </div>
+                <div class="nutrition-card fancy-shape">
+                    <img src="images/veggies.jpg" alt="Vegetables">
+                    <h3>Vegetable Variety</h3>
+                    <p>Load up on greens and colorful vegetables for vitamins and minerals.</p>
+                    <p class="nutrition-meta">Amount: 2-3 cups · Timing: Every meal</p>
+                </div>
+                <div class="nutrition-card fancy-shape">
+                    <img src="images/fruits.jpg" alt="Fruits">
+                    <h3>Fruit Boost</h3>
+                    <p>Natural energy and antioxidants to keep your body running strong.</p>
+                    <p class="nutrition-meta">Amount: 1-2 servings · Timing: Morning + post-workout</p>
+                </div>
+                <div class="nutrition-card fancy-shape">
+                    <img src="images/hydration.jpg" alt="Hydration">
+                    <h3>Hydration</h3>
+                    <p>Stay hydrated to keep performance, recovery, and focus at their best.</p>
+                    <p class="nutrition-meta">Amount: 2-3L per day · Timing: All day</p>
                 </div>
             </div>
         </div>
@@ -182,7 +184,7 @@
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.07C22 6.49 17.52 2 11.94 2S1.87 6.49 1.87 12.07c0 5 3.66 9.15 8.44 9.93v-7.03H7.9v-2.9h2.41V9.8c0-2.4 1.43-3.73 3.62-3.73 1.05 0 2.15.19 2.15.19v2.36h-1.21c-1.19 0-1.56.74-1.56 1.5v1.8h2.66l-.43 2.9h-2.23V22c4.78-.78 8.44-4.93 8.44-9.93z"/></svg>
                         </a>
                         <a href="#" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7c0-2.76 2.24-5 5-5h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm5.25-3.25a1.25 1.25 0 1 0 1.25 1.25 1.25 1.25 0 0 0-1.25-1.25z"/></svg>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 13 3.5 3.5 0 0 1 12 9.5zm5.25-3.25a1.25 1.25 0 1 0 1.25 1.25 1.25 1.25 0 0 0-1.25-1.25z"/></svg>
                         </a>
                         <a href="#" aria-label="Twitter">
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.15 7.2c.01.17.01.34.01.52 0 5.32-4.05 11.46-11.46 11.46-2.28 0-4.4-.67-6.18-1.82.32.04.63.05.96.05 1.89 0 3.63-.64 5.01-1.73-1.77-.04-3.26-1.2-3.77-2.8.25.04.5.06.77.06.36 0 .72-.05 1.06-.14-1.85-.37-3.24-2-3.24-3.95v-.05c.54.3 1.17.49 1.84.51-1.08-.72-1.79-1.95-1.79-3.34 0-.74.2-1.43.55-2.03 2 2.45 4.99 4.06 8.36 4.24-.06-.3-.1-.6-.1-.92 0-2.22 1.8-4.02 4.02-4.02 1.16 0 2.22.49 2.96 1.27.92-.18 1.8-.52 2.58-.98-.3.94-.94 1.72-1.77 2.22.82-.1 1.6-.31 2.33-.62-.55.82-1.23 1.54-2.02 2.12z"/></svg>
@@ -196,7 +198,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
-
